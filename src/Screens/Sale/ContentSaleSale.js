@@ -5,6 +5,7 @@ import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import PaymentMethodService from "../../Services/PaymentMethodService";
 import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
+import SubsidiaryService from "../../Services/SubsidiaryService";
 
 class ContentSaleSale extends Component {
     static MAX_PARCELED = 12;
@@ -15,10 +16,12 @@ class ContentSaleSale extends Component {
         this.state = {
 
             paymentMethods: [],
+            subsidiaries: [],
 
         };
 
         this.paymentMethod = new PaymentMethodService();
+        this.subsidiaryService = new SubsidiaryService();
     }
 
     componentDidMount() {
@@ -29,9 +32,11 @@ class ContentSaleSale extends Component {
         try {
 
             const response = await this.paymentMethod.get();
+            const responseSubsidiary = await this.subsidiaryService.get();
 
             this.setState({
                 paymentMethods: response.data,
+                subsidiaries: responseSubsidiary.data,
             });
 
         } catch (e) {
@@ -42,6 +47,22 @@ class ContentSaleSale extends Component {
     handleChange(event) {
         const {name, value} = event.target;
         this.setState({[name]: value});
+    }
+
+    makeItemSubsidiary() {
+        const itens = [];
+
+        this.state.subsidiaries.map((subsidiary) => {
+            itens.push(
+                <MenuItem key={subsidiary.id}
+                          value={subsidiary}>
+                    {subsidiary.name}
+                </MenuItem>
+            );
+        });
+
+        return itens;
+
     }
 
     makeItemPaymentMethods() {
@@ -107,12 +128,15 @@ class ContentSaleSale extends Component {
                                                            name={'subsidiary'}
                                                            type={'text'}
                                                            size={'small'}
+                                                           select={true}
                                                            erros={this.props.erros}
-                                                           onChange={(event) => this.handleChange(event)}/>
+                                                           onChange={(event) => this.handleChange(event)}>
+                            {this.makeItemSubsidiary()}
+                        </TextFieldDefaultWithGridComponent>
                         <Grid container={true}
                               xs={12}
                               sm={12}>
-                            <TextFieldDefaultWithGridComponent desktop={8}
+                            <TextFieldDefaultWithGridComponent desktop={(this.state?.payment_method?.id === 1 ? 8 : 12)}
                                                                mobile={12}
                                                                label={'Tipo do pagamento'}
                                                                name={'payment_method'}
