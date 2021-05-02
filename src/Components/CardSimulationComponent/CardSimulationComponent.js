@@ -19,7 +19,7 @@ class CardSimulationComponent extends Component {
                 <SpacerComponent height={30}/>
                 <CardSimulationMagneticStyled/>
                 <CardSimulationNumberStyled variant={'h5'}>
-                    444222
+                    {this.props.number}
                 </CardSimulationNumberStyled>
                 <Box display={'flex'}
                      flexDirection={'row'}
@@ -30,13 +30,13 @@ class CardSimulationComponent extends Component {
                         DATA VENCIMENTO
                     </CardSimulationLabelStyled>
                     <CardSimulationValueStyled>
-                        01/25
+                        {this.props.dateExpired}
                     </CardSimulationValueStyled>
                     <CardSimulationLabelStyled>
                         CVV
                     </CardSimulationLabelStyled>
                     <CardSimulationValueStyled>
-                        222
+                        {this.props.cvv}
                     </CardSimulationValueStyled>
                 </Box>
             </CardSimulationStyled>

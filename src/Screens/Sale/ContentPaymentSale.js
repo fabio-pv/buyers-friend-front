@@ -11,12 +11,17 @@ import FlagsCardComponent from "../../Components/FlagsCardComponent/FlagsCardCom
 import CardSimulationComponent from "../../Components/CardSimulationComponent/CardSimulationComponent";
 
 class ContentPaymentSale extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
 
     handleChange(event) {
         const {name, value} = event.target;
         this.setState({[name]: value});
+        console.log(name, value);
     }
-
 
     render() {
         return (
@@ -24,7 +29,7 @@ class ContentPaymentSale extends Component {
                            mobile={12}
                            title={'Dados da forma de pagamento'}>
                 <Grid container={true}
-                spacing={3}>
+                      spacing={3}>
                     <Grid item={true}
                           xs={12}
                           sm={7}>
@@ -72,7 +77,9 @@ class ContentPaymentSale extends Component {
                           xs={12}
                           sm={5}>
                         <SpacerComponent height={25}/>
-                        <CardSimulationComponent/>
+                        <CardSimulationComponent number={this.state.card_number}
+                                                 dateExpired={this.state.expiration_date}
+                                                 cvv={this.state.cvv}/>
                     </Grid>
                 </Grid>
                 <FlagsCardComponent/>
