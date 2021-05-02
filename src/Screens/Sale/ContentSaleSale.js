@@ -172,7 +172,8 @@ class ContentSaleSale extends Component {
                                                            size={'small'}
                                                            erros={this.props.erros}
                                                            onChange={(event) => this.handleChange(event)}/>
-                        <Button variant={'contained'}>
+                        <Button variant={'contained'}
+                                color={'primary'}>
                             Finalizar Venda
                         </Button>
                     </Grid>

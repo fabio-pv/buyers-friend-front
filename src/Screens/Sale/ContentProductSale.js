@@ -4,8 +4,11 @@ import {Button, Grid, MenuItem} from "@material-ui/core";
 import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import ProductService from "../../Services/ProductService";
+import {SaleContext} from "../../Contexts/SaleContext";
 
 class ContentProductSale extends Component {
+    static contextType = SaleContext;
+
     constructor(props) {
         super(props);
 
@@ -69,6 +72,13 @@ class ContentProductSale extends Component {
 
     }
 
+    addProduct = () => {
+        this.context.addProduct({
+            id: this.state.id,
+            name: this.state.name,
+        });
+    }
+
     render() {
         return (
             <CardComponent desktop={5}
@@ -84,7 +94,7 @@ class ContentProductSale extends Component {
                                                        size={'small'}
                                                        disabled={true}
                                                        value={this.state.id}
-                                                       erros={this.props.erros}
+                                                       erros={this.context.erros}
                                                        onChange={(event) => this.handleChange(event)}/>
                 </Grid>
                 <Grid container={true}
@@ -96,7 +106,7 @@ class ContentProductSale extends Component {
                                                        select={true}
                                                        size={'small'}
                                                        value={this.state.name}
-                                                       erros={this.props.erros}
+                                                       erros={this.context.erros}
                                                        onChange={(event) => this.handleChange(event)}>
                         {this.makeItemProduct()}
                     </TextFieldDefaultWithGridComponent>
@@ -114,14 +124,14 @@ class ContentProductSale extends Component {
                                                        size={'small'}
                                                        disabled={true}
                                                        value={this.state.value}
-                                                       erros={this.props.erros}
+                                                       erros={this.context.erros}
                                                        onChange={(event) => this.handleChange(event)}/>
                     <Grid item={true}
                           xs={12}
                           sm={6}>
                         <Button variant={'contained'}
                                 color={'primary'}
-                                onClick={() => console.log('click')}>
+                                onClick={this.addProduct}>
                             Adicionar produto
                         </Button>
                     </Grid>
