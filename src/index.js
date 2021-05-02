@@ -1,14 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {ThemeProvider} from '@material-ui/core/styles';
+import ThemeCustomized from "./Customized/ThemeCustomized";
+import {CssBaseline} from "@material-ui/core";
+import {
+    BrowserRouter as Router, Switch, Route
+} from "react-router-dom";
+import SaleScreen from "./Screens/Sale/SaleScreen";
 
 require('dotenv').config();
 
 function start() {
     return (
-
+        <ThemeProvider theme={ThemeCustomized.system()}>
+            <CssBaseline/>
+            <Router>
+                <Switch>
+                    <Route exact={true}
+                           path={SaleScreen.ROUTE}
+                           component={SaleScreen}>
+                    </Route>
+                </Switch>
+            </Router>
+        </ThemeProvider>
     );
 }
 
