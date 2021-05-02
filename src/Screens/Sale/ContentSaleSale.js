@@ -165,11 +165,12 @@ class ContentSaleSale extends Component {
                           sm={4}>
                         <TextFieldDefaultWithGridComponent desktop={12}
                                                            mobile={12}
-                                                           label={'Valor da venda'}
+                                                           label={'Valor da venda R$'}
                                                            name={'total_amount_in_cents'}
                                                            type={'text'}
                                                            size={'small'}
                                                            disabled={true}
+                                                           value={this.context.dataSave.sale_details.total_amount_in_cents / 100}
                                                            erros={this.props.erros}
                                                            onChange={(event) => this.handleChange(event)}/>
                         <Button variant={'contained'}
