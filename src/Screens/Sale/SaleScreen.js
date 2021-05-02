@@ -11,6 +11,7 @@ import PaymentSaleValidation from "../../FormValidations/PaymentSaleValidation";
 import ClientSaleValidation from "../../FormValidations/ClientSaleValidation";
 import SaleSaleValidation from "../../FormValidations/SaleSaleValidation";
 import moment from "moment";
+import MessageUtil from "../../Utils/MessageUtil";
 
 const objectModel = {
     id: undefined,
@@ -79,46 +80,56 @@ class SaleScreen extends Component {
     }
 
     finishSale = async () => {
+        try {
 
-        /*let validate = await PaymentSaleValidation.validate(this.dataFromPayment.state);
-        if (validate !== true) {
+            let validate = await PaymentSaleValidation.validate(this.dataFromPayment.state);
+            if (validate !== true) {
+                this.setState({
+                    erros: validate,
+                });
+                return;
+            }
+
+            validate = await ClientSaleValidation.validate(this.dataFromClient.state);
+            if (validate !== true) {
+                this.setState({
+                    erros: validate,
+                });
+                return;
+            }
+
+            validate = await SaleSaleValidation.validate(this.dataFromSale.state);
+            if (validate !== true) {
+                this.setState({
+                    erros: validate,
+                });
+                return;
+            }
+
+            this.state.dataSave.id = 1;
+
+            this.state.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number;
+            this.state.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
+
+            this.state.dataSave.client_details.name = this.dataFromClient.state.name;
+            this.state.dataSave.client_details.document = this.dataFromClient.state.document;
+
+            this.state.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
+            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.name;
+            this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
+
+
+            console.log('finishSale', this.state.dataSave);
+
+        } catch (e) {
             this.setState({
-                erros: validate,
+                inLoad: false,
+                messagens: MessageUtil.make({
+                    title: 'Atenção',
+                    body: 'Ocorreu um erro inesperado',
+                }),
             });
-            return;
         }
-
-        validate = await ClientSaleValidation.validate(this.dataFromClient.state);
-        if (validate !== true) {
-            this.setState({
-                erros: validate,
-            });
-            return;
-        }
-
-        validate = await SaleSaleValidation.validate(this.dataFromSale.state);
-        if (validate !== true) {
-            this.setState({
-                erros: validate,
-            });
-            return;
-        }*/
-
-        this.state.dataSave.id = 1;
-
-        this.state.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number;
-        this.state.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
-
-        this.state.dataSave.client_details.name = this.dataFromClient.state.name;
-        this.state.dataSave.client_details.document = this.dataFromClient.state.document;
-
-        this.state.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
-        this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.name;
-        this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
-
-
-        console.log('finishSale', this.state.dataSave);
-
     }
 
     render() {
