@@ -6,8 +6,11 @@ import TextFieldDefaultWithGridComponent
 import PaymentMethodService from "../../Services/PaymentMethodService";
 import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import SubsidiaryService from "../../Services/SubsidiaryService";
+import OrderSummaryComponent from "../../Components/OrderSummaryComponent/OrderSummaryComponent";
+import {SaleContext} from "../../Contexts/SaleContext";
 
 class ContentSaleSale extends Component {
+    static contextType = SaleContext;
     static MAX_PARCELED = 12;
 
     constructor(props) {
@@ -98,6 +101,10 @@ class ContentSaleSale extends Component {
 
     }
 
+    doFinishSale = () => {
+        this.context.finishSale();
+    }
+
     render() {
         return (
             <CardComponent desktop={9}
@@ -108,16 +115,7 @@ class ContentSaleSale extends Component {
                     <Grid item={true}
                           xs={12}
                           sm={4}>
-                        <TextFieldDefaultWithGridComponent desktop={12}
-                                                           mobile={12}
-                                                           label={'Resumo pedido'}
-                                                           name={'name'}
-                                                           type={'text'}
-                                                           size={'small'}
-                                                           multiline={true}
-                                                           rows={4}
-                                                           erros={this.props.erros}
-                                                           onChange={(event) => this.handleChange(event)}/>
+                        <OrderSummaryComponent/>
                     </Grid>
                     <Grid item={true}
                           xs={12}
@@ -173,7 +171,8 @@ class ContentSaleSale extends Component {
                                                            erros={this.props.erros}
                                                            onChange={(event) => this.handleChange(event)}/>
                         <Button variant={'contained'}
-                                color={'primary'}>
+                                color={'primary'}
+                                onClick={this.doFinishSale}>
                             Finalizar Venda
                         </Button>
                     </Grid>

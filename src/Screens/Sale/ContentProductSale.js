@@ -75,7 +75,7 @@ class ContentProductSale extends Component {
     addProduct = () => {
         this.context.addProduct({
             id: this.state.id,
-            name: this.state.name,
+            name: this.state.name?.product_name,
         });
     }
 

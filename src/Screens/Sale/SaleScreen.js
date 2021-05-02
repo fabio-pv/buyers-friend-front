@@ -8,31 +8,22 @@ import ContentClientSale from "./ContentClientSale";
 import ContentSaleSale from "./ContentSaleSale";
 import ProductSaleValidation from "../../FormValidations/ProductSaleValidation";
 
-const objectModel = {{
-    "id": 1,
-        "sale_details": {
-        "itens": [
-            {
-                "id": "0001",
-                "name": "COMPUTADOR RAZOR"
-            },
-            {
-                "id": "0002",
-                "name": "LIVRO DO BATMAN"
-            }
-        ],
-            "subsidiary": "PORTO ALEGRE"
-        "date_sale": "2021-04-01 11:10:20"
-        "payment_method": "PAGAMENTO PARCELADO"
-        "total_amount_in_cents": 560000
-    }
-    "client_details": {
-        "name": "Carlos Pedro de Silva",
-            "document": "59778114030"
-    }
-    "payment_details": {
-        "card_number": "5193********7440",
-            "card_holder": "Carlos Pedro de Silva",
+const objectModel = {
+    id: undefined,
+    sale_details: {
+        itens: [],
+        subsidiary: undefined,
+        date_sale: undefined,
+        payment_method: undefined,
+        total_amount_in_cents: undefined
+    },
+    client_details: {
+        name: undefined,
+        document: undefined
+    },
+    payment_details: {
+        card_number: undefined,
+        card_holder: undefined,
     }
 };
 
@@ -45,6 +36,7 @@ class SaleScreen extends Component {
         this.state = {
 
             inLoad: false,
+            dataSave: objectModel,
 
         };
     }
@@ -59,7 +51,16 @@ class SaleScreen extends Component {
             return;
         }
 
-        console.log(product);
+        this.state.dataSave.sale_details.itens.push(product);
+
+        this.setState({
+            dataSave: this.state.dataSave,
+        });
+    }
+
+    finishSale = async () => {
+
+        console.log('finishSale');
 
     }
 
@@ -68,6 +69,8 @@ class SaleScreen extends Component {
             <SaleContext.Provider value={{
                 erros: this.state.erros,
                 addProduct: this.addProduct,
+                dataSave: this.state.dataSave,
+                finishSale: this.finishSale,
             }}>
                 <HeaderComponent title={'Fazer uma venda'}
                                  messagens={this.state?.messagens}

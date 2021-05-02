@@ -9,8 +9,11 @@ import {ReactComponent as AmericanLogo} from "../../Assets/americanexpress-color
 import {ReactComponent as MastercardLogo} from "../../Assets/mastercard-color_large.svg";
 import FlagsCardComponent from "../../Components/FlagsCardComponent/FlagsCardComponent";
 import CardSimulationComponent from "../../Components/CardSimulationComponent/CardSimulationComponent";
+import {SaleContext} from "../../Contexts/SaleContext";
 
 class ContentPaymentSale extends Component {
+    static contextType = SaleContext;
+
     constructor(props) {
         super(props);
 
