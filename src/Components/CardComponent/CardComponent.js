@@ -6,8 +6,9 @@ class CardComponent extends Component {
     render() {
         return (
             <GridStyled item={true}
-                  xs={this.props.mobile}
-                  sm={this.props.desktop}>
+                        xs={this.props.mobile}
+                        sm={this.props.desktop}
+                        height={this.props.height}>
                 <Paper elevation={1}>
                     <ContentTitleStyled>
                         <Typography variant={'subtitle1'}>

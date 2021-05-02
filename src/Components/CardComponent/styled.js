@@ -3,6 +3,7 @@ import {Grid, Paper} from "@material-ui/core";
 
 export const GridStyled = styled(Grid)`
   width: 100% !important;
+  height: ${props => props.height ? props.height + 'px' : 'auto'};
 `;
 
 export const ContentTitleStyled = styled.div`

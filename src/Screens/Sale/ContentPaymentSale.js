@@ -25,7 +25,7 @@ class ContentPaymentSale extends Component {
 
     render() {
         return (
-            <CardComponent desktop={8}
+            <CardComponent desktop={7}
                            mobile={12}
                            title={'Dados da forma de pagamento'}>
                 <Grid container={true}
