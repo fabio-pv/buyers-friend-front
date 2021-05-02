@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import DialogComponent from "../DialogComponent/DialogComponent";
 import LoadComponent from "../LoadComponent/LoadComponent";
+import {Helmet} from "react-helmet";
+import {ContentHeader, LogoHeaderStyled} from "./styled";
+import {AppBar, Box, Toolbar} from "@material-ui/core";
+import {ReactComponent as Logo} from "../../Assets/logo.svg";
 
-class TemplateComponent extends Component {
+class HeaderComponent extends Component {
     render() {
         return (
             <div>
@@ -11,7 +15,7 @@ class TemplateComponent extends Component {
                     <title>{this.props.title ?? '??'}</title>
                 </Helmet>
                 <ContentHeader>
-                    <AppBar>
+                    <AppBar elevation={0}>
                         <Toolbar>
                             <Box display={'flex'}
                                  flexDirection={'row'}
@@ -20,15 +24,8 @@ class TemplateComponent extends Component {
                                      alignItems="center"
                                      justifyContent="flex-start"
                                      flexGrow={1}>
-                                    <LogoHeader src={newLogo}/>
+                                    <Logo/>
                                 </Box>
-                                {this.props.menu === true &&
-                                <Box display={'flex'}
-                                     alignItems="center"
-                                     justifyContent="flex-end">
-                                    <MenuHeader/>
-                                </Box>
-                                }
                             </Box>
                         </Toolbar>
                     </AppBar>
@@ -41,4 +38,4 @@ class TemplateComponent extends Component {
     }
 }
 
-export default TemplateComponent;
+export default HeaderComponent;

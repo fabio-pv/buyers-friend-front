@@ -1,16 +1,26 @@
 import React, {Component} from 'react';
-import TemplateComponent from "../../Components/Template/TemplateComponent";
+import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 
 class SaleScreen extends Component {
     static ROUTE = '/';
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+
+            inLoad: false,
+
+        };
+    }
+
     render() {
         return (
-           <>
-               <TemplateComponent>
-
-               </TemplateComponent>
-           </>
+            <>
+                <HeaderComponent title={'Fazer uma venda'}
+                                 messagens={this.state?.messagens}
+                                 inLoad={this.state.inLoad}/>
+            </>
         );
     }
 }

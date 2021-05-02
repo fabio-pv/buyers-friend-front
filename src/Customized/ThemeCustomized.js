@@ -6,6 +6,10 @@ class ThemeCustomized {
 
     static system() {
 
+        console.log(
+            '#' + process.env.REACT_APP_PRIMARY_COLOR
+        );
+
         return createMuiTheme({
             palette: {
                 type: 'light',
