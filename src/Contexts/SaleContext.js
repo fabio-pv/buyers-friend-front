@@ -5,5 +5,7 @@ export const SaleContext = React.createContext({
     addProduct: null,
     dataSave: null,
     finishSale: null,
-    dataFromPayment: null,
+    setDataFromPayment: null,
+    setDataFromClient: null,
+    setDataFromSale: null,
 });

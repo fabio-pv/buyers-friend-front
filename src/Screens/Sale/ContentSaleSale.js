@@ -28,6 +28,7 @@ class ContentSaleSale extends Component {
     }
 
     componentDidMount() {
+        this.context.setDataFromSale(this);
         this.load();
     }
 
@@ -164,10 +165,11 @@ class ContentSaleSale extends Component {
                           sm={4}>
                         <TextFieldDefaultWithGridComponent desktop={12}
                                                            mobile={12}
-                                                           label={'Nome do cliente'}
-                                                           name={'name'}
+                                                           label={'Valor da venda'}
+                                                           name={'total_amount_in_cents'}
                                                            type={'text'}
                                                            size={'small'}
+                                                           disabled={true}
                                                            erros={this.props.erros}
                                                            onChange={(event) => this.handleChange(event)}/>
                         <Button variant={'contained'}

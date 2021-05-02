@@ -3,8 +3,21 @@ import CardComponent from "../../Components/CardComponent/CardComponent";
 import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import {Grid} from "@material-ui/core";
+import {SaleContext} from "../../Contexts/SaleContext";
 
 class ContentClientSale extends Component {
+    static contextType = SaleContext;
+
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
+
+    componentDidMount() {
+        this.context.setDataFromClient(this);
+    }
+
     handleChange(event) {
         const {name, value} = event.target;
         this.setState({[name]: value});
@@ -23,7 +36,7 @@ class ContentClientSale extends Component {
                                                        name={'name'}
                                                        type={'text'}
                                                        size={'small'}
-                                                       erros={this.props.erros}
+                                                       erros={this.context.erros}
                                                        onChange={(event) => this.handleChange(event)}/>
                 </Grid>
                 <Grid container={true}
@@ -31,10 +44,10 @@ class ContentClientSale extends Component {
                     <TextFieldDefaultWithGridComponent desktop={12}
                                                        mobile={12}
                                                        label={'Documento do cliente'}
-                                                       name={'name'}
+                                                       name={'document'}
                                                        type={'text'}
                                                        size={'small'}
-                                                       erros={this.props.erros}
+                                                       erros={this.context.erros}
                                                        onChange={(event) => this.handleChange(event)}/>
                 </Grid>
             </CardComponent>

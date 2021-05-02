@@ -20,10 +20,13 @@ class ContentPaymentSale extends Component {
         this.state = {};
     }
 
+    componentDidMount() {
+        this.context.setDataFromPayment(this);
+    }
+
     handleChange(event) {
         const {name, value} = event.target;
         this.setState({[name]: value});
-        console.log(name, value);
     }
 
     render() {
@@ -42,9 +45,9 @@ class ContentPaymentSale extends Component {
                                                                mobile={12}
                                                                label={'Número do cartão'}
                                                                name={'card_number'}
-                                                               type={'number'}
+                                                               type={'text'}
                                                                size={'small'}
-                                                               erros={this.props.erros}
+                                                               erros={this.context.erros}
                                                                onChange={(event) => this.handleChange(event)}/>
                             <TextFieldDefaultWithGridComponent desktop={5}
                                                                mobile={12}
@@ -52,7 +55,7 @@ class ContentPaymentSale extends Component {
                                                                name={'expiration_date'}
                                                                type={'text'}
                                                                size={'small'}
-                                                               erros={this.props.erros}
+                                                               erros={this.context.erros}
                                                                onChange={(event) => this.handleChange(event)}/>
                         </Grid>
                         <Grid container={true}
@@ -63,7 +66,7 @@ class ContentPaymentSale extends Component {
                                                                name={'card_holder'}
                                                                type={'text'}
                                                                size={'small'}
-                                                               erros={this.props.erros}
+                                                               erros={this.context.erros}
                                                                onChange={(event) => this.handleChange(event)}/>
                             <TextFieldDefaultWithGridComponent desktop={5}
                                                                mobile={12}
@@ -71,7 +74,7 @@ class ContentPaymentSale extends Component {
                                                                name={'cvv'}
                                                                type={'number'}
                                                                size={'small'}
-                                                               erros={this.props.erros}
+                                                               erros={this.context.erros}
                                                                onChange={(event) => this.handleChange(event)}/>
                         </Grid>
                     </Grid>

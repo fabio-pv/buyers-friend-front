@@ -7,6 +7,9 @@ import ContentProductSale from "./ContentProductSale";
 import ContentClientSale from "./ContentClientSale";
 import ContentSaleSale from "./ContentSaleSale";
 import ProductSaleValidation from "../../FormValidations/ProductSaleValidation";
+import PaymentSaleValidation from "../../FormValidations/PaymentSaleValidation";
+import ClientSaleValidation from "../../FormValidations/ClientSaleValidation";
+import SaleSaleValidation from "../../FormValidations/SaleSaleValidation";
 
 const objectModel = {
     id: undefined,
@@ -29,6 +32,9 @@ const objectModel = {
 
 class SaleScreen extends Component {
     static ROUTE = '/';
+    dataFromPayment;
+    dataFromClient;
+    dataFromSale;
 
     constructor(props) {
         super(props);
@@ -58,9 +64,51 @@ class SaleScreen extends Component {
         });
     }
 
+    setDataFromPayment = (state) => {
+        this.dataFromPayment = state;
+    }
+
+    setDataFromClient = (state) => {
+        this.dataFromClient = state;
+    }
+
+    setDataFromSale = (state) => {
+        this.dataFromSale = state;
+    }
+
     finishSale = async () => {
 
-        console.log('finishSale');
+        let validate = await PaymentSaleValidation.validate(this.dataFromPayment.state);
+        if (validate !== true) {
+            this.setState({
+                erros: validate,
+            });
+            return;
+        }
+
+        validate = await ClientSaleValidation.validate(this.dataFromClient.state);
+        if (validate !== true) {
+            this.setState({
+                erros: validate,
+            });
+            return;
+        }
+
+        validate = await SaleSaleValidation.validate(this.dataFromSale.state);
+        if (validate !== true) {
+            this.setState({
+                erros: validate,
+            });
+            return;
+        }
+
+
+        this.state.dataSave.id = 111;
+
+        console.log(
+            '222222',
+            this.state.dataSave
+        );
 
     }
 
@@ -71,6 +119,9 @@ class SaleScreen extends Component {
                 addProduct: this.addProduct,
                 dataSave: this.state.dataSave,
                 finishSale: this.finishSale,
+                setDataFromPayment: this.setDataFromPayment,
+                setDataFromClient: this.setDataFromClient,
+                setDataFromSale: this.setDataFromSale,
             }}>
                 <HeaderComponent title={'Fazer uma venda'}
                                  messagens={this.state?.messagens}
