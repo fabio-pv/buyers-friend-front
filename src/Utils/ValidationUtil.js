@@ -1,3 +1,4 @@
+/* eslint-disable */
 class ValidationUtil {
 
     static MSG_FIELD_REQUIRED = 'Campo obrigatório';
