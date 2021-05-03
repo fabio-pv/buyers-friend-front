@@ -38,24 +38,6 @@ class TextFieldDefault extends Component {
         }
     }
 
-    shrink() {
-
-        return false;
-
-        if (
-            this.props.forceLabel !== undefined
-            &&
-            this.props.forceLabel === true) {
-            return true;
-        }
-
-        if (this.props.value !== undefined) {
-            return true;
-        }
-
-        return undefined;
-    }
-
     getPasswordVisibility() {
 
         if (this.props.type !== 'password') {
@@ -106,7 +88,7 @@ class TextFieldDefault extends Component {
                                     helperText={this.tryGetErro()}
                                     size={this.props.size}
                                     InputLabelProps={{
-                                        shrink: this.shrink()
+                                        shrink: false,
                                     }}
                                     InputProps={{
                                         inputComponent: this.props.mask,

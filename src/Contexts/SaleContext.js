@@ -8,4 +8,5 @@ export const SaleContext = React.createContext({
     setDataFromPayment: null,
     setDataFromClient: null,
     setDataFromSale: null,
+    stateParent: null,
 });

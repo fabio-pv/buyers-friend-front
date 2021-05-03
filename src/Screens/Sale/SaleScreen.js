@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 import {SaleContext} from "../../Contexts/SaleContext";
-import {Box, Grid, Hidden} from "@material-ui/core";
+import {Box, Grid} from "@material-ui/core";
 import ContentPaymentSale from "./ContentPaymentSale";
 import ContentProductSale from "./ContentProductSale";
 import ContentClientSale from "./ContentClientSale";
@@ -14,7 +14,6 @@ import moment from "moment";
 import MessageUtil from "../../Utils/MessageUtil";
 import SaleHistoryScreen from "../SaleHistory/SaleHistoryScreen";
 import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
-import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
 import {ContentMainResponsiveStyled, SpaceResponsiveStyled} from "./styled";
 
@@ -86,6 +85,10 @@ class SaleScreen extends Component {
 
     setDataFromSale = (state) => {
         this.dataFromSale = state;
+    }
+
+    setMessage = (message) => {
+        console.log(message);
     }
 
     finishSale = async () => {
@@ -169,6 +172,7 @@ class SaleScreen extends Component {
                 setDataFromPayment: this.setDataFromPayment,
                 setDataFromClient: this.setDataFromClient,
                 setDataFromSale: this.setDataFromSale,
+                stateParent: this,
             }}>
                 <HeaderComponent title={'Fazer uma venda'}
                                  messagens={this.state?.messagens}

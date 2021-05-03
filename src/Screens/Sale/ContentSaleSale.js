@@ -8,6 +8,7 @@ import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import SubsidiaryService from "../../Services/SubsidiaryService";
 import OrderSummaryComponent from "../../Components/OrderSummaryComponent/OrderSummaryComponent";
 import {SaleContext} from "../../Contexts/SaleContext";
+import MessageUtil from "../../Utils/MessageUtil";
 
 class ContentSaleSale extends Component {
     static contextType = SaleContext;
@@ -35,8 +36,16 @@ class ContentSaleSale extends Component {
     async load() {
         try {
 
+            this.context.stateParent.setState({
+                inLoad: true,
+            });
+
             const response = await this.paymentMethod.get();
             const responseSubsidiary = await this.subsidiaryService.get();
+
+            this.context.stateParent.setState({
+                inLoad: false,
+            });
 
             this.setState({
                 paymentMethods: response.data,
@@ -44,7 +53,13 @@ class ContentSaleSale extends Component {
             });
 
         } catch (e) {
-            console.log(e);
+            this.context.stateParent.setState({
+                inLoad: false,
+                messagens: MessageUtil.make({
+                    title: 'Atenção',
+                    body: 'Ocorreu um erro inesperado',
+                }),
+            });
         }
     }
 

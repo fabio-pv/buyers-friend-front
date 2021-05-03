@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import SaleScreen from "./Screens/Sale/SaleScreen";
 import SaleHistoryScreen from "./Screens/SaleHistory/SaleHistoryScreen";
+import Test from "./Test";
 
 require('dotenv').config();
 
@@ -24,6 +25,9 @@ function start() {
                     <Route exact={true}
                            path={SaleHistoryScreen.ROUTE}
                            component={SaleHistoryScreen}/>
+                    <Route exact={true}
+                           path={Test.ROUTE}
+                           component={Test}/>
                 </Switch>
             </Router>
         </ThemeProvider>

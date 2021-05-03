@@ -5,6 +5,7 @@ import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import ProductService from "../../Services/ProductService";
 import {SaleContext} from "../../Contexts/SaleContext";
+import MessageUtil from "../../Utils/MessageUtil";
 
 class ContentProductSale extends Component {
     static contextType = SaleContext;
@@ -28,14 +29,28 @@ class ContentProductSale extends Component {
     async load() {
         try {
 
+            this.context.stateParent.setState({
+                inLoad: true,
+            });
+
             const response = await this.productService.get();
+
+            this.context.stateParent.setState({
+                inLoad: false,
+            });
 
             this.setState({
                 products: response.data,
             });
 
         } catch (e) {
-            console.log(e);
+            this.context.stateParent.setState({
+                inLoad: false,
+                messagens: MessageUtil.make({
+                    title: 'Atenção',
+                    body: 'Ocorreu um erro inesperado ao recuperar os produtos',
+                }),
+            });
         }
     }
 
