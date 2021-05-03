@@ -41,7 +41,7 @@ class Test extends Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.set('teste 1')}>
+                <button onClick={() => this.set({object: 'azul', objectWithObject: [1, 2, 3, 4]})}>
                     set
                 </button>
                 <button onClick={() => this.get()}>
