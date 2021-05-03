@@ -18,7 +18,13 @@ class PaymentSaleValidation {
                     .required(ValidationUtil.MSG_FIELD_REQUIRED),
                 expiration_date: yup
                     .string()
-                    .required(ValidationUtil.MSG_FIELD_REQUIRED),
+                    .typeError('Not a valid expiration date. Example: MM/YY')
+                    .max(5, 'Not a valid expiration date. Example: MM/YY')
+                    .matches(
+                        /([0-9]{2})\/([0-9]{2})/,
+                        'Not a valid expiration date. Example: MM/YY'
+                    )
+                    .required('Expiration date is required'),
             });
 
             validate.validateSync(form, {abortEarly: false})
