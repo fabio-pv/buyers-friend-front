@@ -8,4 +8,5 @@ export const ContentMainOrderSummaryStyled = styled.div`
   margin: 0;
   border-radius: 5px;
   padding: 10px;
+  overflow-y: auto;
 `;
