@@ -12,6 +12,7 @@ import ClientSaleValidation from "../../FormValidations/ClientSaleValidation";
 import SaleSaleValidation from "../../FormValidations/SaleSaleValidation";
 import moment from "moment";
 import MessageUtil from "../../Utils/MessageUtil";
+import SaleHistoryScreen from "../SaleHistory/SaleHistoryScreen";
 
 const objectModel = {
     id: undefined,
@@ -64,6 +65,10 @@ class SaleScreen extends Component {
 
         this.setState({
             dataSave: this.state.dataSave,
+            messagens: MessageUtil.make({
+                title: 'Sucesso',
+                body: 'Produto foi adicionando a venda',
+            })
         });
     }
 
@@ -81,7 +86,6 @@ class SaleScreen extends Component {
 
     finishSale = async () => {
         try {
-
             let validate = await PaymentSaleValidation.validate(this.dataFromPayment.state);
             if (validate !== true) {
                 this.setState({
@@ -118,8 +122,20 @@ class SaleScreen extends Component {
             this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.name;
             this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
 
+            const save = localStorage.getItem('sales');
 
-            console.log('finishSale', this.state.dataSave);
+            let lastDataSave = [];
+            if (save !== null) {
+                lastDataSave = JSON.parse(save);
+            }
+
+            lastDataSave.push(
+                this.state.dataSave
+            );
+
+            localStorage.setItem('sales', JSON.stringify(lastDataSave));
+
+            window.location.href = SaleHistoryScreen.ROUTE;
 
         } catch (e) {
             this.setState({

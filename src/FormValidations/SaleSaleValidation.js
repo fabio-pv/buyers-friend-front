@@ -7,9 +7,6 @@ class SaleSaleValidation {
         try {
 
             let validate = yup.object().shape({
-                name: yup
-                    .string()
-                    .required(ValidationUtil.MSG_FIELD_REQUIRED),
                 payment_method: yup
                     .string()
                     .required(ValidationUtil.MSG_FIELD_REQUIRED),

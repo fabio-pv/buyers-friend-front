@@ -8,6 +8,7 @@ import {
     BrowserRouter as Router, Switch, Route
 } from "react-router-dom";
 import SaleScreen from "./Screens/Sale/SaleScreen";
+import SaleHistoryScreen from "./Screens/SaleHistory/SaleHistoryScreen";
 
 require('dotenv').config();
 
@@ -19,8 +20,10 @@ function start() {
                 <Switch>
                     <Route exact={true}
                            path={SaleScreen.ROUTE}
-                           component={SaleScreen}>
-                    </Route>
+                           component={SaleScreen}/>
+                    <Route exact={true}
+                           path={SaleHistoryScreen.ROUTE}
+                           component={SaleHistoryScreen}/>
                 </Switch>
             </Router>
         </ThemeProvider>
