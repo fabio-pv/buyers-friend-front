@@ -122,7 +122,7 @@ class SaleScreen extends Component {
             this.state.dataSave.client_details.document = this.dataFromClient.state.document;
 
             this.state.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
-            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.name;
+            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
             this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
 
             const save = localStorage.getItem('sales');
