@@ -22,5 +22,5 @@ export const ContentBodyStyled = styled.div`
 `;
 
 export const PaperStyled = styled(Paper)`
-  height: ${props => props.height ? props.height + 'px' : 'auto'};
+  min-height: ${props => props.height ? props.height + 'px' : 'auto'};
 `;
