@@ -8,7 +8,7 @@ class SubHeaderComponent extends Component {
             <Hidden xsDown={true}>
                 <SubHeaderStyled elevation={1}>
                     <Typography variant={'h6'}>
-                        Fazer uma venda
+                        {this.props.title}
                     </Typography>
                 </SubHeaderStyled>
             </Hidden>

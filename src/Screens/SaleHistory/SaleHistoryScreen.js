@@ -6,6 +6,7 @@ import {Box} from "@material-ui/core";
 import TableSaleHistory from "./TableSaleHistory";
 import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
+import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
 
 class SaleHistoryScreen extends Component {
     static ROUTE = '/sale-history';
@@ -25,13 +26,15 @@ class SaleHistoryScreen extends Component {
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
                 <Box display={'flex'}
-                     justifyContent={'center'}
-                     alignItems={'center'}>
+                     justifyContent={'flex-start'}
+                     alignItems={'flex-start'}>
                     <DrawerComponent/>
                     <Box width={'90%'}>
+                        <SubHeaderComponent title={'Histórico de vendas'}/>
+                        <SpacerComponent height={135}/>
                         <FilterSaleHistory/>
                         <SpacerComponent height={20}/>
-                        <TableSaleHistory salesHistory={[]}/>
+                        <TableSaleHistory/>
                     </Box>
                 </Box>
             </SaleHistoryContext.Provider>

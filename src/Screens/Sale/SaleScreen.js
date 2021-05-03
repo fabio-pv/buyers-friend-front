@@ -138,7 +138,14 @@ class SaleScreen extends Component {
 
             localStorage.setItem('sales', JSON.stringify(lastDataSave));
 
-            window.location.href = SaleHistoryScreen.ROUTE;
+            this.setState({
+                inLoad: false,
+                messagens: MessageUtil.make({
+                    title: 'Sucesso',
+                    body: 'Sua venda foi finalizada',
+                    okBtnToRoute: SaleHistoryScreen.ROUTE,
+                }),
+            });
 
         } catch (e) {
             this.setState({
@@ -170,7 +177,7 @@ class SaleScreen extends Component {
                      alignItems={'flex-start'}>
                     <DrawerComponent/>
                     <Box width={'90%'}>
-                        <SubHeaderComponent/>
+                        <SubHeaderComponent title={'Fazer uma venda'}/>
                         <SpacerComponent height={135}/>
                         <Grid container={true}
                               spacing={3}>
