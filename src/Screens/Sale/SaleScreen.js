@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 import {SaleContext} from "../../Contexts/SaleContext";
-import {Box, Grid} from "@material-ui/core";
+import {Box, Grid, Hidden} from "@material-ui/core";
 import ContentPaymentSale from "./ContentPaymentSale";
 import ContentProductSale from "./ContentProductSale";
 import ContentClientSale from "./ContentClientSale";
@@ -16,6 +16,7 @@ import SaleHistoryScreen from "../SaleHistory/SaleHistoryScreen";
 import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
 import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
+import {ContentMainResponsiveStyled, SpaceResponsiveStyled} from "./styled";
 
 const objectModel = {
     id: undefined,
@@ -122,7 +123,7 @@ class SaleScreen extends Component {
             this.state.dataSave.client_details.document = this.dataFromClient.state.document;
 
             this.state.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
-            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.name;
+            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
             this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
 
             const save = localStorage.getItem('sales');
@@ -172,13 +173,11 @@ class SaleScreen extends Component {
                 <HeaderComponent title={'Fazer uma venda'}
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
-                <Box display={'flex'}
-                     justifyContent={'flex-start'}
-                     alignItems={'flex-start'}>
+                <ContentMainResponsiveStyled>
                     <DrawerComponent/>
                     <Box width={'90%'}>
                         <SubHeaderComponent title={'Fazer uma venda'}/>
-                        <SpacerComponent height={135}/>
+                        <SpaceResponsiveStyled/>
                         <Grid container={true}
                               spacing={3}>
                             <ContentPaymentSale/>
@@ -187,7 +186,7 @@ class SaleScreen extends Component {
                             <ContentSaleSale/>
                         </Grid>
                     </Box>
-                </Box>
+                </ContentMainResponsiveStyled>
             </SaleContext.Provider>
         );
     }

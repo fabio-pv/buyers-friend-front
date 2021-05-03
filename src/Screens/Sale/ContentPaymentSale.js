@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import CardComponent from "../../Components/CardComponent/CardComponent";
-import {Box, Grid, Typography} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
-import {ReactComponent as VisaLogo} from "../../Assets/visa-color_large.svg";
-import {ReactComponent as AmericanLogo} from "../../Assets/americanexpress-color-large.svg";
-import {ReactComponent as MastercardLogo} from "../../Assets/mastercard-color_large.svg";
 import FlagsCardComponent from "../../Components/FlagsCardComponent/FlagsCardComponent";
 import CardSimulationComponent from "../../Components/CardSimulationComponent/CardSimulationComponent";
 import {SaleContext} from "../../Contexts/SaleContext";

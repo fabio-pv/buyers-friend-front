@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import DialogComponent from "../DialogComponent/DialogComponent";
 import LoadComponent from "../LoadComponent/LoadComponent";
 import {Helmet} from "react-helmet";
-import {ContentHeader, LogoHeaderStyled} from "./styled";
+import {ContentHeader} from "./styled";
 import {AppBar, Box, Toolbar} from "@material-ui/core";
 import {ReactComponent as Logo} from "../../Assets/logo.svg";
 

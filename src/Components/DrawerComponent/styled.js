@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {Avatar, Typography} from "@material-ui/core";
 
 export const DrawerStyled = styled.div`
   background: ${'#' + process.env.REACT_APP_SECONDARY_COLOR};

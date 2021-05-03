@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {IconButton, InputAdornment, TextField} from "@material-ui/core";
+import {IconButton, InputAdornment} from "@material-ui/core";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import {TextFieldDefaultStyled} from "./styled";

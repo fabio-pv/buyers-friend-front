@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Box, Grid, Paper, Typography} from "@material-ui/core";
-import {ContentBodyStyled, ContentTitle, ContentTitleStyled, GridStyled, PaperStyled} from "./styled";
+import {Typography} from "@material-ui/core";
+import {ContentBodyStyled, ContentTitleStyled, GridStyled, PaperStyled} from "./styled";
 
 class CardComponent extends Component {
     render() {

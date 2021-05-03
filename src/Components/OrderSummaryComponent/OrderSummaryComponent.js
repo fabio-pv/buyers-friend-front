@@ -12,7 +12,7 @@ class OrderSummaryComponent extends Component {
 
         this.context.dataSave.sale_details.itens.map((product) => {
 
-            itens.push(
+            return itens.push(
                 <Typography variant={'body1'}
                             onClick={() => this.removeItem(product)}>
                     {product.id} - {product.name}

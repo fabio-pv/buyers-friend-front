@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
-import moment from "moment";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@material-ui/core";
 import DateUtil from "../../Utils/DateUtil";
 import {TableCellStyled, TableHeaderStyled, TableRowStyled} from "./styled";
 
@@ -8,14 +7,18 @@ class TableSaleHistory extends Component {
 
     makeRows() {
 
+        const itens = [];
+
         let sales = localStorage.getItem('sales');
         sales = JSON.parse(sales);
 
-        const itens = [];
+        if (sales === null) {
+            return itens;
+        }
 
         sales.map((sale) => {
 
-            itens.push(
+            return itens.push(
                 <TableRowStyled key={sale.id}>
                     <TableCell>{DateUtil.raw(sale.sale_details.date_sale).toDateTime()}</TableCell>
                     <TableCell>R$ {sale.sale_details.total_amount_in_cents}</TableCell>
