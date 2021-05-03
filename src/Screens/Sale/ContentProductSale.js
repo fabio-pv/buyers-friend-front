@@ -6,6 +6,7 @@ import TextFieldDefaultWithGridComponent
 import ProductService from "../../Services/ProductService";
 import {SaleContext} from "../../Contexts/SaleContext";
 import MessageUtil from "../../Utils/MessageUtil";
+import ButtonDefault from "../../Components/ButtonDefault/ButtonDefault";
 
 class ContentProductSale extends Component {
     static contextType = SaleContext;
@@ -147,11 +148,9 @@ class ContentProductSale extends Component {
                     <Grid item={true}
                           xs={12}
                           sm={6}>
-                        <Button variant={'contained'}
-                                color={'primary'}
-                                onClick={this.addProduct}>
+                        <ButtonDefault onClick={this.addProduct}>
                             Adicionar produto
-                        </Button>
+                        </ButtonDefault>
                     </Grid>
                 </Grid>
             </CardComponent>

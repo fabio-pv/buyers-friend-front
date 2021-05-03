@@ -9,6 +9,7 @@ import SubsidiaryService from "../../Services/SubsidiaryService";
 import OrderSummaryComponent from "../../Components/OrderSummaryComponent/OrderSummaryComponent";
 import {SaleContext} from "../../Contexts/SaleContext";
 import MessageUtil from "../../Utils/MessageUtil";
+import ButtonDefault from "../../Components/ButtonDefault/ButtonDefault";
 
 class ContentSaleSale extends Component {
     static contextType = SaleContext;
@@ -192,11 +193,9 @@ class ContentSaleSale extends Component {
                                                            erros={this.props.erros}
                                                            onChange={(event) => this.handleChange(event)}/>
                         <SpacerComponent height={25}/>
-                        <Button variant={'contained'}
-                                color={'primary'}
-                                onClick={this.doFinishSale}>
+                        <ButtonDefault onClick={this.doFinishSale}>
                             Finalizar Venda
-                        </Button>
+                        </ButtonDefault>
                     </Grid>
                 </Grid>
             </CardComponent>
