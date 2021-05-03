@@ -138,7 +138,14 @@ class SaleScreen extends Component {
 
             localStorage.setItem('sales', JSON.stringify(lastDataSave));
 
-            window.location.href = SaleHistoryScreen.ROUTE;
+            this.setState({
+                inLoad: false,
+                messagens: MessageUtil.make({
+                    title: 'Sucesso',
+                    body: 'Sua venda foi finalizada',
+                    okBtnToRoute: SaleHistoryScreen.ROUTE,
+                }),
+            });
 
         } catch (e) {
             this.setState({

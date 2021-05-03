@@ -30,11 +30,11 @@ class SaleHistoryScreen extends Component {
                      alignItems={'flex-start'}>
                     <DrawerComponent/>
                     <Box width={'90%'}>
-                        <SubHeaderComponent title={'Historico de vendas'}/>
+                        <SubHeaderComponent title={'Histórico de vendas'}/>
                         <SpacerComponent height={135}/>
                         <FilterSaleHistory/>
                         <SpacerComponent height={20}/>
-                        <TableSaleHistory salesHistory={[]}/>
+                        <TableSaleHistory/>
                     </Box>
                 </Box>
             </SaleHistoryContext.Provider>
