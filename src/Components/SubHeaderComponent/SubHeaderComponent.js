@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Hidden, Paper, Typography} from "@material-ui/core";
+import {Hidden, Typography} from "@material-ui/core";
 import {SubHeaderStyled} from "./styled";
 
 class SubHeaderComponent extends Component {

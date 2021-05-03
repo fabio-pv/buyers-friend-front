@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import {
-    CardSimulationBirdLabelStyled,
-    CardSimulationExpiredLabelStyled,
-    CardSimulationExpiredValueStyled,
     CardSimulationLabelStyled,
-    CardSimulationMagnetic,
     CardSimulationMagneticStyled,
     CardSimulationNumberStyled,
     CardSimulationStyled, CardSimulationValueStyled
 } from "./styled";
 import SpacerComponent from "../SpacerComponent/SpacerComponent";
-import {Box, Typography} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 
 class CardSimulationComponent extends Component {
     render() {

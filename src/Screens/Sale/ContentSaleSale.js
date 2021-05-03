@@ -57,12 +57,13 @@ class ContentSaleSale extends Component {
         const itens = [];
 
         this.state.subsidiaries.map((subsidiary) => {
-            itens.push(
+            return itens.push(
                 <MenuItem key={subsidiary.id}
                           value={subsidiary}>
                     {subsidiary.name}
                 </MenuItem>
             );
+
         });
 
         return itens;
@@ -73,12 +74,13 @@ class ContentSaleSale extends Component {
         const itens = [];
 
         this.state.paymentMethods.map((paymentMethod) => {
-            itens.push(
+            return itens.push(
                 <MenuItem key={paymentMethod.id}
                           value={paymentMethod}>
                     {paymentMethod.name}
                 </MenuItem>
             );
+
         });
 
         return itens;

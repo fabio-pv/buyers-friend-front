@@ -60,12 +60,13 @@ class ContentProductSale extends Component {
         const itens = [];
 
         this.state.products.map((product) => {
-            itens.push(
+            return itens.push(
                 <MenuItem key={product.id}
                           value={product}>
                     {product.product_name}
                 </MenuItem>
             );
+
         });
 
         return itens;

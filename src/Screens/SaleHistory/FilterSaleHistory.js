@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Box, Button} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import {ReactComponent as FilterIcon} from "../../Assets/filter_1.svg";
 import SearchIcon from '@material-ui/icons/Search';
 import {ButtonFilterIconStyled, ButtonFilterStyled} from "./styled";
