@@ -165,13 +165,13 @@ class SaleScreen extends Component {
                 <HeaderComponent title={'Fazer uma venda'}
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
-                <SubHeaderComponent/>
                 <Box display={'flex'}
-                     justifyContent={'center'}
+                     justifyContent={'flex-start'}
                      alignItems={'flex-start'}>
                     <DrawerComponent/>
                     <Box width={'90%'}>
-                        <SpacerComponent height={20}/>
+                        <SubHeaderComponent/>
+                        <SpacerComponent height={135}/>
                         <Grid container={true}
                               spacing={3}>
                             <ContentPaymentSale/>

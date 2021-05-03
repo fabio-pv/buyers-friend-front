@@ -4,6 +4,7 @@ import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import {Grid} from "@material-ui/core";
 import {SaleContext} from "../../Contexts/SaleContext";
+import FormMask from "../../FromMask/FormMask";
 
 class ContentClientSale extends Component {
     static contextType = SaleContext;
@@ -27,7 +28,8 @@ class ContentClientSale extends Component {
         return (
             <CardComponent desktop={3}
                            mobile={12}
-                           title={'Dados do Cliente'}>
+                           title={'Dados do Cliente'}
+                           height={245}>
                 <Grid container={true}
                       spacing={3}>
                     <TextFieldDefaultWithGridComponent desktop={12}
@@ -47,6 +49,7 @@ class ContentClientSale extends Component {
                                                        name={'document'}
                                                        type={'text'}
                                                        size={'small'}
+                                                       mask={FormMask.cnpj}
                                                        erros={this.context.erros}
                                                        onChange={(event) => this.handleChange(event)}/>
                 </Grid>

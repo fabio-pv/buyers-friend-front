@@ -31,5 +31,5 @@ export const CardSimulationValueStyled = styled(Typography)`
   color: #E2E1E1;
   font-weight: bold;
   margin-left: 5px;
-  font-size: 15px;
+  font-size: 14px;
 `;

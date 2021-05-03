@@ -20,7 +20,8 @@
     "web-vitals": "^1.1.1",
     "yup": "^0.29.3",
     "react-helmet": "^6.1.0",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "react-text-mask": "^5.4.3"
   },
   "scripts": {
     "start": "react-scripts start",

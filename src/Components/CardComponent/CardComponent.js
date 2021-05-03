@@ -7,9 +7,9 @@ class CardComponent extends Component {
         return (
             <GridStyled item={true}
                         xs={this.props.mobile}
-                        sm={this.props.desktop}
-                        height={this.props.height}>
-                <Paper elevation={1}>
+                        sm={this.props.desktop}>
+                <PaperStyled elevation={1}
+                             height={this.props.height}>
                     <ContentTitleStyled>
                         <Typography variant={'subtitle1'}>
                             {this.props.title}
@@ -18,7 +18,7 @@ class CardComponent extends Component {
                     <ContentBodyStyled>
                         {this.props.children}
                     </ContentBodyStyled>
-                </Paper>
+                </PaperStyled>
             </GridStyled>
         );
     }

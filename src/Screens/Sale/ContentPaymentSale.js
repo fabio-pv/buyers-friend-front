@@ -10,6 +10,7 @@ import {ReactComponent as MastercardLogo} from "../../Assets/mastercard-color_la
 import FlagsCardComponent from "../../Components/FlagsCardComponent/FlagsCardComponent";
 import CardSimulationComponent from "../../Components/CardSimulationComponent/CardSimulationComponent";
 import {SaleContext} from "../../Contexts/SaleContext";
+import FormMask from "../../FromMask/FormMask";
 
 class ContentPaymentSale extends Component {
     static contextType = SaleContext;
@@ -33,7 +34,8 @@ class ContentPaymentSale extends Component {
         return (
             <CardComponent desktop={7}
                            mobile={12}
-                           title={'Dados da forma de pagamento'}>
+                           title={'Dados da forma de pagamento'}
+                           height={310}>
                 <Grid container={true}
                       spacing={3}>
                     <Grid item={true}
@@ -47,6 +49,7 @@ class ContentPaymentSale extends Component {
                                                                name={'card_number'}
                                                                type={'text'}
                                                                size={'small'}
+                                                               mask={FormMask.cardNumber}
                                                                erros={this.context.erros}
                                                                onChange={(event) => this.handleChange(event)}/>
                             <TextFieldDefaultWithGridComponent desktop={5}
@@ -55,6 +58,7 @@ class ContentPaymentSale extends Component {
                                                                name={'expiration_date'}
                                                                type={'text'}
                                                                size={'small'}
+                                                               mask={FormMask.dateCard}
                                                                erros={this.context.erros}
                                                                onChange={(event) => this.handleChange(event)}/>
                         </Grid>
@@ -72,8 +76,9 @@ class ContentPaymentSale extends Component {
                                                                mobile={12}
                                                                label={'CVV'}
                                                                name={'cvv'}
-                                                               type={'number'}
+                                                               type={'text'}
                                                                size={'small'}
+                                                               mask={FormMask.cardCvv}
                                                                erros={this.context.erros}
                                                                onChange={(event) => this.handleChange(event)}/>
                         </Grid>

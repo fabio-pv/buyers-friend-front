@@ -110,7 +110,8 @@ class ContentSaleSale extends Component {
         return (
             <CardComponent desktop={9}
                            mobile={12}
-                           title={'Dados da venda'}>
+                           title={'Dados da venda'}
+                           height={245}>
                 <Grid container={true}
                       spacing={3}>
                     <Grid item={true}
@@ -173,6 +174,7 @@ class ContentSaleSale extends Component {
                                                            value={this.context.dataSave.sale_details.total_amount_in_cents / 100}
                                                            erros={this.props.erros}
                                                            onChange={(event) => this.handleChange(event)}/>
+                        <SpacerComponent height={25}/>
                         <Button variant={'contained'}
                                 color={'primary'}
                                 onClick={this.doFinishSale}>

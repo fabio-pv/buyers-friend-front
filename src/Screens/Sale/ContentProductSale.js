@@ -83,7 +83,8 @@ class ContentProductSale extends Component {
         return (
             <CardComponent desktop={5}
                            mobile={12}
-                           title={'Produtos'}>
+                           title={'Produtos'}
+                           height={310}>
                 <Grid container={true}
                       spacing={3}>
                     <TextFieldDefaultWithGridComponent desktop={5}

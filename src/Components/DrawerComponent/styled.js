@@ -10,4 +10,5 @@ export const DrawerStyled = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
+  position: fixed;
 `;
