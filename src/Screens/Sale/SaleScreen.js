@@ -13,6 +13,9 @@ import SaleSaleValidation from "../../FormValidations/SaleSaleValidation";
 import moment from "moment";
 import MessageUtil from "../../Utils/MessageUtil";
 import SaleHistoryScreen from "../SaleHistory/SaleHistoryScreen";
+import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
+import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
+import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
 
 const objectModel = {
     id: undefined,
@@ -162,10 +165,13 @@ class SaleScreen extends Component {
                 <HeaderComponent title={'Fazer uma venda'}
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
+                <SubHeaderComponent/>
                 <Box display={'flex'}
                      justifyContent={'center'}
-                     alignItems={'center'}>
+                     alignItems={'flex-start'}>
+                    <DrawerComponent/>
                     <Box width={'90%'}>
+                        <SpacerComponent height={20}/>
                         <Grid container={true}
                               spacing={3}>
                             <ContentPaymentSale/>

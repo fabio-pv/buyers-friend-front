@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Avatar, Typography} from "@material-ui/core";
 
 export const ContentHeader = styled.div`
-  padding-top: 80px;
+  padding-top: 64px;
 `;
 
 export const LogoHeaderStyled = styled.img`

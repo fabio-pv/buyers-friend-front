@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import moment from "moment";
 import DateUtil from "../../Utils/DateUtil";
+import {TableCellStyled, TableHeaderStyled, TableRowStyled} from "./styled";
 
 class TableSaleHistory extends Component {
 
@@ -15,14 +16,14 @@ class TableSaleHistory extends Component {
         sales.map((sale) => {
 
             itens.push(
-                <TableRow key={sale.id}>
+                <TableRowStyled key={sale.id}>
                     <TableCell>{DateUtil.raw(sale.sale_details.date_sale).toDateTime()}</TableCell>
                     <TableCell>R$ {sale.sale_details.total_amount_in_cents}</TableCell>
                     <TableCell>{sale.client_details.name}</TableCell>
                     <TableCell>{sale.client_details.document}</TableCell>
                     <TableCell>{sale.sale_details.payment_method}</TableCell>
                     <TableCell>{sale.sale_details.subsidiary}</TableCell>
-                </TableRow>
+                </TableRowStyled>
             );
 
         })
@@ -34,16 +35,16 @@ class TableSaleHistory extends Component {
         return (
             <TableContainer component={Paper}>
                 <Table size="small">
-                    <TableHead>
+                    <TableHeaderStyled>
                         <TableRow>
-                            <TableCell>DATA DA VENDA</TableCell>
-                            <TableCell>VALOR</TableCell>
-                            <TableCell>NOME CLIENTE</TableCell>
-                            <TableCell>DOCUMENTO DO CLIENTE</TableCell>
-                            <TableCell>MÉTODO DE PAGAMENTO</TableCell>
-                            <TableCell>FILIAL</TableCell>
+                            <TableCellStyled>DATA DA VENDA</TableCellStyled>
+                            <TableCellStyled>VALOR</TableCellStyled>
+                            <TableCellStyled>NOME CLIENTE</TableCellStyled>
+                            <TableCellStyled>DOCUMENTO DO CLIENTE</TableCellStyled>
+                            <TableCellStyled>MÉTODO DE PAGAMENTO</TableCellStyled>
+                            <TableCellStyled>FILIAL</TableCellStyled>
                         </TableRow>
-                    </TableHead>
+                    </TableHeaderStyled>
                     <TableBody>
                         {this.makeRows()}
                     </TableBody>
