@@ -92,6 +92,7 @@ class ContentProductSale extends Component {
         this.context.addProduct({
             id: this.state.id,
             name: this.state.name?.product_name,
+            amount_in_cents: this.state.name?.amount_in_cents,
         }, this.state.name);
     }
 

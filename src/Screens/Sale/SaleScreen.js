@@ -70,9 +70,27 @@ class SaleScreen extends Component {
             dataSave: this.state.dataSave,
             messagens: MessageUtil.make({
                 title: 'Sucesso',
-                body: 'Produto foi adicionando a venda',
+                body: 'Produto foi adicionado a venda',
             })
         });
+    }
+
+    removeProduct = (product) => {
+
+        this.state.dataSave.sale_details.itens = this.state.dataSave.sale_details.itens.filter(function (obj) {
+            return obj.id !== product.id;
+        });
+
+        this.state.dataSave.sale_details.total_amount_in_cents -= product.amount_in_cents;
+
+        this.setState({
+            dataSave: this.state.dataSave,
+            messagens: MessageUtil.make({
+                title: 'Removido',
+                body: 'Produto foi removido da venda',
+            })
+        });
+
     }
 
     setDataFromPayment = (state) => {
@@ -167,6 +185,7 @@ class SaleScreen extends Component {
             <SaleContext.Provider value={{
                 erros: this.state.erros,
                 addProduct: this.addProduct,
+                removeProduct: this.removeProduct,
                 dataSave: this.state.dataSave,
                 finishSale: this.finishSale,
                 setDataFromPayment: this.setDataFromPayment,

@@ -57,7 +57,7 @@ class ContentSaleSale extends Component {
                 inLoad: false,
                 messagens: MessageUtil.make({
                     title: 'Atenção',
-                    body: 'Ocorreu um erro inesperado',
+                    body: 'Ocorreu um erro ao recuperar os dados',
                 }),
             });
         }
