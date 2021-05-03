@@ -15,7 +15,7 @@ class DrawerComponent extends Component {
     render() {
         return (
             <Hidden xsDown={true}>
-                <Box width={'10%'}>
+                <Box width={'9%'}>
                     <DrawerStyled>
                         <SaleIcon style={{cursor: 'pointer'}}
                                   onClick={() => this.toScreen(SaleScreen.ROUTE)}/>

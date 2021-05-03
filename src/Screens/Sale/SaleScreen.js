@@ -170,7 +170,7 @@ class SaleScreen extends Component {
                      alignItems={'flex-start'}>
                     <DrawerComponent/>
                     <Box width={'90%'}>
-                        <SubHeaderComponent/>
+                        <SubHeaderComponent title={'Fazer uma venda'}/>
                         <SpacerComponent height={135}/>
                         <Grid container={true}
                               spacing={3}>
