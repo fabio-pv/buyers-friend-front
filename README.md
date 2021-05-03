@@ -1,7 +1,7 @@
 # Como rodar o projeto
 
 ### 1º Clone o projeto para um local apropriado
-### 2º Configure o arquivo .env com o a url da api
+### 2º Configure o arquivo .env com a url da api
 ```
 REACT_APP_PRIMARY_COLOR='3BCF6D'
 REACT_APP_SECONDARY_COLOR='0C1441'
