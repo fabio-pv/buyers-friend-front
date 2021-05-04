@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 import {SaleContext} from "../../Contexts/SaleContext";
-import {Box, Grid, Hidden} from "@material-ui/core";
+import {Box, Grid} from "@material-ui/core";
 import ContentPaymentSale from "./ContentPaymentSale";
 import ContentProductSale from "./ContentProductSale";
 import ContentClientSale from "./ContentClientSale";
@@ -14,9 +14,9 @@ import moment from "moment";
 import MessageUtil from "../../Utils/MessageUtil";
 import SaleHistoryScreen from "../SaleHistory/SaleHistoryScreen";
 import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
-import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
 import {ContentMainResponsiveStyled, SpaceResponsiveStyled} from "./styled";
+import DBLocalUtil from "../../Utils/DBLocalUtil";
 
 const objectModel = {
     id: undefined,
@@ -71,9 +71,29 @@ class SaleScreen extends Component {
             dataSave: this.state.dataSave,
             messagens: MessageUtil.make({
                 title: 'Sucesso',
-                body: 'Produto foi adicionando a venda',
+                body: 'Produto foi adicionado a venda',
             })
         });
+    }
+
+    removeProduct = (product) => {
+
+        const stateAux = this.state;
+
+        stateAux.dataSave.sale_details.itens = this.state.dataSave.sale_details.itens.filter(function (obj) {
+            return obj.id !== product.id;
+        });
+
+        stateAux.dataSave.sale_details.total_amount_in_cents -= product.amount_in_cents;
+
+        this.setState({
+            dataSave: this.state.dataSave,
+            messagens: MessageUtil.make({
+                title: 'Removido',
+                body: 'Produto foi removido da venda',
+            })
+        });
+
     }
 
     setDataFromPayment = (state) => {
@@ -86,6 +106,10 @@ class SaleScreen extends Component {
 
     setDataFromSale = (state) => {
         this.dataFromSale = state;
+    }
+
+    setMessage = (message) => {
+        console.log(message);
     }
 
     finishSale = async () => {
@@ -114,30 +138,28 @@ class SaleScreen extends Component {
                 return;
             }
 
-            this.state.dataSave.id = 1;
+            const dbLocalUtil = DBLocalUtil.getConnection();
 
-            this.state.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number;
-            this.state.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
+            const sales = await (await dbLocalUtil).getAll(DBLocalUtil.SALE_HISTOREY_KEY);
 
-            this.state.dataSave.client_details.name = this.dataFromClient.state.name;
-            this.state.dataSave.client_details.document = this.dataFromClient.state.document;
+            const stateAux = this.state;
 
-            this.state.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
-            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
-            this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
+            stateAux.dataSave.id = (sales.length + 1);
 
-            const save = localStorage.getItem('sales');
+            stateAux.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number.replace(/\d{4}(?= \d{4})/g, "****");
+            stateAux.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
 
-            let lastDataSave = [];
-            if (save !== null) {
-                lastDataSave = JSON.parse(save);
-            }
+            stateAux.dataSave.client_details.name = this.dataFromClient.state.name;
+            stateAux.dataSave.client_details.document = this.dataFromClient.state.document;
 
-            lastDataSave.push(
-                this.state.dataSave
+            stateAux.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
+            stateAux.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
+            stateAux.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
+
+            (await dbLocalUtil).add(
+                DBLocalUtil.SALE_HISTOREY_KEY,
+                stateAux.dataSave
             );
-
-            localStorage.setItem('sales', JSON.stringify(lastDataSave));
 
             this.setState({
                 inLoad: false,
@@ -149,6 +171,7 @@ class SaleScreen extends Component {
             });
 
         } catch (e) {
+            console.log(e);
             this.setState({
                 inLoad: false,
                 messagens: MessageUtil.make({
@@ -164,17 +187,19 @@ class SaleScreen extends Component {
             <SaleContext.Provider value={{
                 erros: this.state.erros,
                 addProduct: this.addProduct,
+                removeProduct: this.removeProduct,
                 dataSave: this.state.dataSave,
                 finishSale: this.finishSale,
                 setDataFromPayment: this.setDataFromPayment,
                 setDataFromClient: this.setDataFromClient,
                 setDataFromSale: this.setDataFromSale,
+                stateParent: this,
             }}>
                 <HeaderComponent title={'Fazer uma venda'}
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
                 <ContentMainResponsiveStyled>
-                    <DrawerComponent/>
+                    <DrawerComponent menuSaleSelect={true}/>
                     <Box width={'90%'}>
                         <SubHeaderComponent title={'Fazer uma venda'}/>
                         <SpaceResponsiveStyled/>

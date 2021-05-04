@@ -1,3 +1,5 @@
 import React from "react";
 
-export const SaleHistoryContext = React.createContext({});
+export const SaleHistoryContext = React.createContext({
+    stateParent: null,
+});

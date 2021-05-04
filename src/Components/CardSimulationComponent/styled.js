@@ -17,19 +17,27 @@ export const CardSimulationNumberStyled = styled(Typography)`
   color: #FFFFFF;
   font-weight: bold;
   margin-left: 20px;
-  margin-top: 30px;
+  margin-top: 25px;
+  font-size: 21px;
 `;
 
 export const CardSimulationLabelStyled = styled(Typography)`
   color: #FFF;
   font-weight: bold;
   margin-left: 20px;
-  font-size: 12px;
+  font-size: 11px;
+`;
+
+export const CardSimulationLabelCvvStyled = styled(Typography)`
+  color: #FFF;
+  font-weight: bold;
+  margin-left: 10px;
+  font-size: 11px;
 `;
 
 export const CardSimulationValueStyled = styled(Typography)`
   color: #E2E1E1;
   font-weight: bold;
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 12px;
 `;

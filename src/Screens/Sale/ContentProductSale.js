@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import CardComponent from "../../Components/CardComponent/CardComponent";
-import {Button, Grid, MenuItem} from "@material-ui/core";
+import {Grid, MenuItem} from "@material-ui/core";
 import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import ProductService from "../../Services/ProductService";
 import {SaleContext} from "../../Contexts/SaleContext";
+import MessageUtil from "../../Utils/MessageUtil";
+import ButtonDefault from "../../Components/ButtonDefault/ButtonDefault";
 
 class ContentProductSale extends Component {
     static contextType = SaleContext;
@@ -28,14 +30,28 @@ class ContentProductSale extends Component {
     async load() {
         try {
 
+            this.context.stateParent.setState({
+                inLoad: true,
+            });
+
             const response = await this.productService.get();
+
+            this.context.stateParent.setState({
+                inLoad: false,
+            });
 
             this.setState({
                 products: response.data,
             });
 
         } catch (e) {
-            console.log(e);
+            this.context.stateParent.setState({
+                inLoad: false,
+                messagens: MessageUtil.make({
+                    title: 'Atenção',
+                    body: 'Ocorreu um erro inesperado ao recuperar os produtos',
+                }),
+            });
         }
     }
 
@@ -77,6 +93,7 @@ class ContentProductSale extends Component {
         this.context.addProduct({
             id: this.state.id,
             name: this.state.name?.product_name,
+            amount_in_cents: this.state.name?.amount_in_cents,
         }, this.state.name);
     }
 
@@ -131,11 +148,9 @@ class ContentProductSale extends Component {
                     <Grid item={true}
                           xs={12}
                           sm={6}>
-                        <Button variant={'contained'}
-                                color={'primary'}
-                                onClick={this.addProduct}>
+                        <ButtonDefault onClick={this.addProduct}>
                             Adicionar produto
-                        </Button>
+                        </ButtonDefault>
                     </Grid>
                 </Grid>
             </CardComponent>

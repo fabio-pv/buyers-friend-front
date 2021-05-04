@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import SaleScreen from "./Screens/Sale/SaleScreen";
 import SaleHistoryScreen from "./Screens/SaleHistory/SaleHistoryScreen";
+import "moment/locale/pt-br";
 
 require('dotenv').config();
 

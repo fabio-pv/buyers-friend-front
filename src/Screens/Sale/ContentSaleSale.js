@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CardComponent from "../../Components/CardComponent/CardComponent";
-import {Button, Grid, MenuItem} from "@material-ui/core";
+import {Grid, MenuItem} from "@material-ui/core";
 import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import PaymentMethodService from "../../Services/PaymentMethodService";
@@ -8,6 +8,8 @@ import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import SubsidiaryService from "../../Services/SubsidiaryService";
 import OrderSummaryComponent from "../../Components/OrderSummaryComponent/OrderSummaryComponent";
 import {SaleContext} from "../../Contexts/SaleContext";
+import MessageUtil from "../../Utils/MessageUtil";
+import ButtonDefault from "../../Components/ButtonDefault/ButtonDefault";
 
 class ContentSaleSale extends Component {
     static contextType = SaleContext;
@@ -35,8 +37,16 @@ class ContentSaleSale extends Component {
     async load() {
         try {
 
+            this.context.stateParent.setState({
+                inLoad: true,
+            });
+
             const response = await this.paymentMethod.get();
             const responseSubsidiary = await this.subsidiaryService.get();
+
+            this.context.stateParent.setState({
+                inLoad: false,
+            });
 
             this.setState({
                 paymentMethods: response.data,
@@ -44,7 +54,13 @@ class ContentSaleSale extends Component {
             });
 
         } catch (e) {
-            console.log(e);
+            this.context.stateParent.setState({
+                inLoad: false,
+                messagens: MessageUtil.make({
+                    title: 'Atenção',
+                    body: 'Ocorreu um erro ao recuperar os dados',
+                }),
+            });
         }
     }
 
@@ -177,11 +193,9 @@ class ContentSaleSale extends Component {
                                                            erros={this.props.erros}
                                                            onChange={(event) => this.handleChange(event)}/>
                         <SpacerComponent height={25}/>
-                        <Button variant={'contained'}
-                                color={'primary'}
-                                onClick={this.doFinishSale}>
+                        <ButtonDefault onClick={this.doFinishSale}>
                             Finalizar Venda
-                        </Button>
+                        </ButtonDefault>
                     </Grid>
                 </Grid>
             </CardComponent>

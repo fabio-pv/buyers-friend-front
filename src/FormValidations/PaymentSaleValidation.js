@@ -18,6 +18,12 @@ class PaymentSaleValidation {
                     .required(ValidationUtil.MSG_FIELD_REQUIRED),
                 expiration_date: yup
                     .string()
+                    .typeError(ValidationUtil.MSG_CARD_DATE_EXPIRED)
+                    .max(7, ValidationUtil.MSG_CARD_DATE_EXPIRED)
+                    .matches(
+                        /([0-9]{2})\/([0-9]{4})/,
+                        ValidationUtil.MSG_CARD_DATE_EXPIRED
+                    )
                     .required(ValidationUtil.MSG_FIELD_REQUIRED),
             });
 

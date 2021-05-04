@@ -3,6 +3,19 @@ import React from "react";
 
 class FormMask {
 
+    static cpf(props) {
+        const {...other} = props;
+        return <MaskedInput
+            {...other}
+            mask={[
+                /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/
+            ]}
+            placeholderChar={'\u2000'}
+            showMask={true}
+        />
+    }
+
+
     static cnpj(props) {
         const {...other} = props;
         return <MaskedInput

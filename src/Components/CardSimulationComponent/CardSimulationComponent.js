@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+    CardSimulationLabelCvvStyled,
     CardSimulationLabelStyled,
     CardSimulationMagneticStyled,
     CardSimulationNumberStyled,
@@ -15,7 +16,7 @@ class CardSimulationComponent extends Component {
                 <SpacerComponent height={30}/>
                 <CardSimulationMagneticStyled/>
                 <CardSimulationNumberStyled variant={'h5'}>
-                    {this.props.number}
+                    {this.props.number ?? '**** **** **** ****'}
                 </CardSimulationNumberStyled>
                 <Box display={'flex'}
                      flexDirection={'row'}
@@ -26,13 +27,13 @@ class CardSimulationComponent extends Component {
                         DATA VENCIMENTO
                     </CardSimulationLabelStyled>
                     <CardSimulationValueStyled>
-                        {this.props.dateExpired}
+                        {this.props.dateExpired ?? '**/****'}
                     </CardSimulationValueStyled>
-                    <CardSimulationLabelStyled>
+                    <CardSimulationLabelCvvStyled>
                         CVV
-                    </CardSimulationLabelStyled>
+                    </CardSimulationLabelCvvStyled>
                     <CardSimulationValueStyled>
-                        {this.props.cvv}
+                        {this.props.cvv ?? '***'}
                     </CardSimulationValueStyled>
                 </Box>
             </CardSimulationStyled>

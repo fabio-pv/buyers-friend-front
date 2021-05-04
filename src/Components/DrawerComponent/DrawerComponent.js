@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Box, Hidden} from "@material-ui/core";
-import {DrawerStyled} from "./styled";
+import {Box, Hidden, Typography} from "@material-ui/core";
+import {ContentMenuItemStyled, DrawerStyled} from "./styled";
 import {ReactComponent as SaleIcon} from "../../Assets/sale.svg";
 import {ReactComponent as ReportIcon} from "../../Assets/report.svg";
 import SpacerComponent from "../SpacerComponent/SpacerComponent";
@@ -17,11 +17,21 @@ class DrawerComponent extends Component {
             <Hidden xsDown={true}>
                 <Box width={'9%'}>
                     <DrawerStyled>
-                        <SaleIcon style={{cursor: 'pointer'}}
-                                  onClick={() => this.toScreen(SaleScreen.ROUTE)}/>
+                        <ContentMenuItemStyled onClick={() => this.toScreen(SaleScreen.ROUTE)}
+                                               current={this.props.menuSaleSelect}>
+                            <SaleIcon/>
+                            <Typography variant={'h6'}>
+                                Fazer uma Venda
+                            </Typography>
+                        </ContentMenuItemStyled>
                         <SpacerComponent height={40}/>
-                        <ReportIcon style={{cursor: 'pointer'}}
-                                    onClick={() => this.toScreen(SaleHistoryScreen.ROUTE)}/>
+                        <ContentMenuItemStyled onClick={() => this.toScreen(SaleHistoryScreen.ROUTE)}
+                                               current={this.props.menuHistorySelect}>
+                            <ReportIcon/>
+                            <Typography variant={'h6'}>
+                                Histórico de Vendas
+                            </Typography>
+                        </ContentMenuItemStyled>
                     </DrawerStyled>
                 </Box>
             </Hidden>

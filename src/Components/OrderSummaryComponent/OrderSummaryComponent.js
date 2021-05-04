@@ -14,7 +14,8 @@ class OrderSummaryComponent extends Component {
 
             return itens.push(
                 <Typography variant={'body1'}
-                            onClick={() => this.removeItem(product)}>
+                            onDoubleClick={() => this.removeItem(product)}
+                            style={{cursor: 'pointer'}}>
                     {product.id} - {product.name}
                 </Typography>
             );
@@ -25,7 +26,7 @@ class OrderSummaryComponent extends Component {
     }
 
     removeItem = (product) => {
-        console.log(product)
+        this.context.removeProduct(product);
     }
 
     render() {
