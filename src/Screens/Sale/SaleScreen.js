@@ -78,11 +78,13 @@ class SaleScreen extends Component {
 
     removeProduct = (product) => {
 
-        this.state.dataSave.sale_details.itens = this.state.dataSave.sale_details.itens.filter(function (obj) {
+        const stateAux = this.state;
+
+        stateAux.dataSave.sale_details.itens = this.state.dataSave.sale_details.itens.filter(function (obj) {
             return obj.id !== product.id;
         });
 
-        this.state.dataSave.sale_details.total_amount_in_cents -= product.amount_in_cents;
+        stateAux.dataSave.sale_details.total_amount_in_cents -= product.amount_in_cents;
 
         this.setState({
             dataSave: this.state.dataSave,
@@ -136,23 +138,27 @@ class SaleScreen extends Component {
                 return;
             }
 
-            this.state.dataSave.id = 1;
-
-            this.state.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number.replace(/\d{4}(?= \d{4})/g, "****");
-            this.state.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
-
-            this.state.dataSave.client_details.name = this.dataFromClient.state.name;
-            this.state.dataSave.client_details.document = this.dataFromClient.state.document;
-
-            this.state.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
-            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
-            this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
-
             const dbLocalUtil = DBLocalUtil.getConnection();
+
+            const sales = await (await dbLocalUtil).getAll(DBLocalUtil.SALE_HISTOREY_KEY);
+
+            const stateAux = this.state;
+
+            stateAux.dataSave.id = (sales.length + 1);
+
+            stateAux.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number.replace(/\d{4}(?= \d{4})/g, "****");
+            stateAux.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
+
+            stateAux.dataSave.client_details.name = this.dataFromClient.state.name;
+            stateAux.dataSave.client_details.document = this.dataFromClient.state.document;
+
+            stateAux.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
+            stateAux.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
+            stateAux.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
 
             (await dbLocalUtil).add(
                 DBLocalUtil.SALE_HISTOREY_KEY,
-                this.state.dataSave
+                stateAux.dataSave
             );
 
             this.setState({

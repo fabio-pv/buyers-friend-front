@@ -3,7 +3,6 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mat
 import DateUtil from "../../Utils/DateUtil";
 import {TableCellStyled, TableHeaderStyled, TableRowStyled} from "./styled";
 import DBLocalUtil from "../../Utils/DBLocalUtil";
-import MessageUtil from "../../Utils/MessageUtil";
 import {SaleHistoryContext} from "../../Contexts/SaleHistoryContext";
 import MoneyFormatterUtil from "../../Utils/MoneyFormatterUtil";
 
