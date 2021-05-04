@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CardComponent from "../../Components/CardComponent/CardComponent";
-import {Button, Grid, MenuItem} from "@material-ui/core";
+import {Grid, MenuItem} from "@material-ui/core";
 import TextFieldDefaultWithGridComponent
     from "../../Components/TextFieldDefaultWithGridComponent/TextFieldDefaultWithGridComponent";
 import ProductService from "../../Services/ProductService";

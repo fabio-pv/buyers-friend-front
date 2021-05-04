@@ -7,6 +7,7 @@ import TableSaleHistory from "./TableSaleHistory";
 import SpacerComponent from "../../Components/SpacerComponent/SpacerComponent";
 import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
 import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
+import {ContentMainResponsiveStyled, SpaceResponsiveStyled} from "./styled";
 
 class SaleHistoryScreen extends Component {
     static ROUTE = '/sale-history';
@@ -21,22 +22,22 @@ class SaleHistoryScreen extends Component {
 
     render() {
         return (
-            <SaleHistoryContext.Provider value={{}}>
+            <SaleHistoryContext.Provider value={{
+                stateParent: this,
+            }}>
                 <HeaderComponent title={'Historico de vendas'}
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
-                <Box display={'flex'}
-                     justifyContent={'flex-start'}
-                     alignItems={'flex-start'}>
+                <ContentMainResponsiveStyled>
                     <DrawerComponent menuHistorySelect={true}/>
                     <Box width={'90%'}>
                         <SubHeaderComponent title={'Histórico de vendas'}/>
-                        <SpacerComponent height={135}/>
+                        <SpaceResponsiveStyled/>
                         <FilterSaleHistory/>
                         <SpacerComponent height={20}/>
                         <TableSaleHistory/>
                     </Box>
-                </Box>
+                </ContentMainResponsiveStyled>
             </SaleHistoryContext.Provider>
         );
     }

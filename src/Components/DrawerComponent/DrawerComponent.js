@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Box, Hidden, Typography} from "@material-ui/core";
-import {ContentMenuItem, ContentMenuItemStyled, DrawerStyled} from "./styled";
+import {ContentMenuItemStyled, DrawerStyled} from "./styled";
 import {ReactComponent as SaleIcon} from "../../Assets/sale.svg";
 import {ReactComponent as ReportIcon} from "../../Assets/report.svg";
 import SpacerComponent from "../SpacerComponent/SpacerComponent";

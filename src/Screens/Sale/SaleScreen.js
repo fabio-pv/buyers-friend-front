@@ -16,6 +16,7 @@ import SaleHistoryScreen from "../SaleHistory/SaleHistoryScreen";
 import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
 import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
 import {ContentMainResponsiveStyled, SpaceResponsiveStyled} from "./styled";
+import DBLocalUtil from "../../Utils/DBLocalUtil";
 
 const objectModel = {
     id: undefined,
@@ -77,11 +78,13 @@ class SaleScreen extends Component {
 
     removeProduct = (product) => {
 
-        this.state.dataSave.sale_details.itens = this.state.dataSave.sale_details.itens.filter(function (obj) {
+        const stateAux = this.state;
+
+        stateAux.dataSave.sale_details.itens = this.state.dataSave.sale_details.itens.filter(function (obj) {
             return obj.id !== product.id;
         });
 
-        this.state.dataSave.sale_details.total_amount_in_cents -= product.amount_in_cents;
+        stateAux.dataSave.sale_details.total_amount_in_cents -= product.amount_in_cents;
 
         this.setState({
             dataSave: this.state.dataSave,
@@ -135,30 +138,28 @@ class SaleScreen extends Component {
                 return;
             }
 
-            this.state.dataSave.id = 1;
+            const dbLocalUtil = DBLocalUtil.getConnection();
 
-            this.state.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number.replace(/\d{4}(?= \d{4})/g, "****");
-            this.state.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
+            const sales = await (await dbLocalUtil).getAll(DBLocalUtil.SALE_HISTOREY_KEY);
 
-            this.state.dataSave.client_details.name = this.dataFromClient.state.name;
-            this.state.dataSave.client_details.document = this.dataFromClient.state.document;
+            const stateAux = this.state;
 
-            this.state.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
-            this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
-            this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
+            stateAux.dataSave.id = (sales.length + 1);
 
-            const save = localStorage.getItem('sales');
+            stateAux.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number.replace(/\d{4}(?= \d{4})/g, "****");
+            stateAux.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
 
-            let lastDataSave = [];
-            if (save !== null) {
-                lastDataSave = JSON.parse(save);
-            }
+            stateAux.dataSave.client_details.name = this.dataFromClient.state.name;
+            stateAux.dataSave.client_details.document = this.dataFromClient.state.document;
 
-            lastDataSave.push(
-                this.state.dataSave
+            stateAux.dataSave.sale_details.subsidiary = this.dataFromSale.state.subsidiary.name;
+            stateAux.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
+            stateAux.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
+
+            (await dbLocalUtil).add(
+                DBLocalUtil.SALE_HISTOREY_KEY,
+                stateAux.dataSave
             );
-
-            localStorage.setItem('sales', JSON.stringify(lastDataSave));
 
             this.setState({
                 inLoad: false,
@@ -170,6 +171,7 @@ class SaleScreen extends Component {
             });
 
         } catch (e) {
+            console.log(e);
             this.setState({
                 inLoad: false,
                 messagens: MessageUtil.make({
