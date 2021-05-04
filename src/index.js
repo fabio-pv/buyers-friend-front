@@ -10,6 +10,7 @@ import {
 import SaleScreen from "./Screens/Sale/SaleScreen";
 import SaleHistoryScreen from "./Screens/SaleHistory/SaleHistoryScreen";
 import Test from "./Test";
+import "moment/locale/pt-br";
 
 require('dotenv').config();
 

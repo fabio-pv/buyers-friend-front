@@ -3,8 +3,12 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mat
 import DateUtil from "../../Utils/DateUtil";
 import {TableCellStyled, TableHeaderStyled, TableRowStyled} from "./styled";
 import DBLocalUtil from "../../Utils/DBLocalUtil";
+import MessageUtil from "../../Utils/MessageUtil";
+import {SaleHistoryContext} from "../../Contexts/SaleHistoryContext";
 
 class TableSaleHistory extends Component {
+    static contextType = SaleHistoryContext;
+
     constructor(props) {
         super(props);
 
@@ -29,7 +33,6 @@ class TableSaleHistory extends Component {
             });
 
         } catch (e) {
-            console.log(e);
         }
     }
 
@@ -38,12 +41,20 @@ class TableSaleHistory extends Component {
 
             const itens = [];
 
+            var formatter = new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 2,
+            });
+
+            formatter.format(2500);
+
             this.state.sales.map((sale) => {
 
                 return itens.push(
                     <TableRowStyled key={sale.id}>
-                        <TableCell>{DateUtil.raw(sale.sale_details.date_sale).toDateTime()}</TableCell>
-                        <TableCell>R$ {sale.sale_details.total_amount_in_cents}</TableCell>
+                        <TableCell>{DateUtil.raw(sale.sale_details.date_sale).toHumanTime()}</TableCell>
+                        <TableCell>{formatter.format(sale.sale_details.total_amount_in_cents / 100)}</TableCell>
                         <TableCell>{sale.client_details.name}</TableCell>
                         <TableCell>{sale.client_details.document}</TableCell>
                         <TableCell>{sale.sale_details.payment_method}</TableCell>

@@ -5,6 +5,7 @@ var dateUtil = null;
 const FORMAT_DATE = 'DD/MM/YYYY';
 const FORMAT_DATE_TIME = 'DD/MM/YYYY hh:mm:ss';
 const FORMAT_DATE_API = 'YYYY-MM-DD';
+const FORMAT_DATE_TIME_HUMAN = 'MMM DD, YYYY hh:mm:ss A'
 
 class DateUtil {
     constructor(dateObject) {
@@ -25,7 +26,8 @@ class DateUtil {
     }
 
     toHumanTime() {
-        return this.dateObject.format(FORMAT_DATE_TIME);
+        return this.dateObject
+            .format(FORMAT_DATE_TIME_HUMAN);
     }
 
     toApiFormat() {

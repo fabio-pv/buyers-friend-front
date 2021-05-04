@@ -21,7 +21,9 @@ class SaleHistoryScreen extends Component {
 
     render() {
         return (
-            <SaleHistoryContext.Provider value={{}}>
+            <SaleHistoryContext.Provider value={{
+                stateParent: this,
+            }}>
                 <HeaderComponent title={'Historico de vendas'}
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
