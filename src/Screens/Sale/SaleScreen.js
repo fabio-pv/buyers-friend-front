@@ -16,6 +16,7 @@ import SaleHistoryScreen from "../SaleHistory/SaleHistoryScreen";
 import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
 import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
 import {ContentMainResponsiveStyled, SpaceResponsiveStyled} from "./styled";
+import DBLocalUtil from "../../Utils/DBLocalUtil";
 
 const objectModel = {
     id: undefined,
@@ -147,18 +148,12 @@ class SaleScreen extends Component {
             this.state.dataSave.sale_details.payment_method = this.dataFromSale.state.payment_method.name;
             this.state.dataSave.sale_details.date_sale = moment().format('YYYY-MM-DD HH:mm:ss');
 
-            const save = localStorage.getItem('sales');
+            const dbLocalUtil = DBLocalUtil.getConnection();
 
-            let lastDataSave = [];
-            if (save !== null) {
-                lastDataSave = JSON.parse(save);
-            }
-
-            lastDataSave.push(
+            (await dbLocalUtil).add(
+                DBLocalUtil.SALE_HISTOREY_KEY,
                 this.state.dataSave
             );
-
-            localStorage.setItem('sales', JSON.stringify(lastDataSave));
 
             this.setState({
                 inLoad: false,
@@ -170,6 +165,7 @@ class SaleScreen extends Component {
             });
 
         } catch (e) {
+            console.log(e);
             this.setState({
                 inLoad: false,
                 messagens: MessageUtil.make({

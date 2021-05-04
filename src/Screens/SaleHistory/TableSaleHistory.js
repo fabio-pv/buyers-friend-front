@@ -2,36 +2,62 @@ import React, {Component} from 'react';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@material-ui/core";
 import DateUtil from "../../Utils/DateUtil";
 import {TableCellStyled, TableHeaderStyled, TableRowStyled} from "./styled";
+import DBLocalUtil from "../../Utils/DBLocalUtil";
 
 class TableSaleHistory extends Component {
+    constructor(props) {
+        super(props);
 
-    makeRows() {
+        this.state = {
+            sales: [],
+        };
+    }
 
-        const itens = [];
+    componentDidMount() {
+        this.load();
+    }
 
-        let sales = localStorage.getItem('sales');
-        sales = JSON.parse(sales);
+    async load() {
+        try {
 
-        if (sales === null) {
-            return itens;
+            const connection = DBLocalUtil.getConnection();
+
+            const sales = await (await connection).getAll(DBLocalUtil.SALE_HISTOREY_KEY);
+
+            this.setState({
+                sales: sales,
+            });
+
+        } catch (e) {
+            console.log(e);
         }
+    }
 
-        sales.map((sale) => {
+    makeRows = () => {
+        try {
 
-            return itens.push(
-                <TableRowStyled key={sale.id}>
-                    <TableCell>{DateUtil.raw(sale.sale_details.date_sale).toDateTime()}</TableCell>
-                    <TableCell>R$ {sale.sale_details.total_amount_in_cents}</TableCell>
-                    <TableCell>{sale.client_details.name}</TableCell>
-                    <TableCell>{sale.client_details.document}</TableCell>
-                    <TableCell>{sale.sale_details.payment_method}</TableCell>
-                    <TableCell>{sale.sale_details.subsidiary}</TableCell>
-                </TableRowStyled>
-            );
+            const itens = [];
 
-        })
+            this.state.sales.map((sale) => {
 
-        return itens;
+                return itens.push(
+                    <TableRowStyled key={sale.id}>
+                        <TableCell>{DateUtil.raw(sale.sale_details.date_sale).toDateTime()}</TableCell>
+                        <TableCell>R$ {sale.sale_details.total_amount_in_cents}</TableCell>
+                        <TableCell>{sale.client_details.name}</TableCell>
+                        <TableCell>{sale.client_details.document}</TableCell>
+                        <TableCell>{sale.sale_details.payment_method}</TableCell>
+                        <TableCell>{sale.sale_details.subsidiary}</TableCell>
+                    </TableRowStyled>
+                );
+
+            })
+
+            return itens;
+
+        } catch (e) {
+            return [];
+        }
     }
 
     render() {
