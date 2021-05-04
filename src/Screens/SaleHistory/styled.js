@@ -54,3 +54,22 @@ export const SpaceResponsiveStyled = styled.div`
     height: 135px;
   }
 `;
+
+export const ContentEmptyTableSaleHistoryStyled = styled.div`
+  margin-top: 150px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    font-size: 90px;
+    color: rgba(128, 128, 128, 0.69);
+  }
+  
+  h6 {
+    font-weight: bold;
+    color: rgba(128, 128, 128, 0.69);
+  }
+`;

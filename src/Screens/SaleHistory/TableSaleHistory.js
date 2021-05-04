@@ -5,6 +5,7 @@ import {TableCellStyled, TableHeaderStyled, TableRowStyled} from "./styled";
 import DBLocalUtil from "../../Utils/DBLocalUtil";
 import {SaleHistoryContext} from "../../Contexts/SaleHistoryContext";
 import MoneyFormatterUtil from "../../Utils/MoneyFormatterUtil";
+import EmptyTableSaleHistory from "./EmptyTableSaleHistory";
 
 class TableSaleHistory extends Component {
     static contextType = SaleHistoryContext;
@@ -64,6 +65,13 @@ class TableSaleHistory extends Component {
     }
 
     render() {
+
+        if (this.state.sales.length <= 0) {
+            return (
+                <EmptyTableSaleHistory/>
+            );
+        }
+
         return (
             <TableContainer component={Paper}>
                 <Table size="small">

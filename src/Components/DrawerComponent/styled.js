@@ -13,8 +13,8 @@ export const DrawerStyled = styled.div`
   padding-right: 20px;
   position: fixed;
   z-index: 999;
-  transition: width 0.5s, visibility 1.0s;
-  
+  transition: width 0.3s, color 1.0s;
+
   &:hover {
     width: 300px !important;
 
