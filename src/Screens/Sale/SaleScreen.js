@@ -137,7 +137,7 @@ class SaleScreen extends Component {
 
             this.state.dataSave.id = 1;
 
-            this.state.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number;
+            this.state.dataSave.payment_details.card_number = this.dataFromPayment.state.card_number.replace(/\d{4}(?= \d{4})/g, "****");
             this.state.dataSave.payment_details.card_holder = this.dataFromPayment.state.card_holder;
 
             this.state.dataSave.client_details.name = this.dataFromClient.state.name;
@@ -197,7 +197,7 @@ class SaleScreen extends Component {
                                  messagens={this.state?.messagens}
                                  inLoad={this.state.inLoad}/>
                 <ContentMainResponsiveStyled>
-                    <DrawerComponent/>
+                    <DrawerComponent menuSaleSelect={true}/>
                     <Box width={'90%'}>
                         <SubHeaderComponent title={'Fazer uma venda'}/>
                         <SpaceResponsiveStyled/>

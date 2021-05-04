@@ -28,7 +28,7 @@ class SaleHistoryScreen extends Component {
                 <Box display={'flex'}
                      justifyContent={'flex-start'}
                      alignItems={'flex-start'}>
-                    <DrawerComponent/>
+                    <DrawerComponent menuHistorySelect={true}/>
                     <Box width={'90%'}>
                         <SubHeaderComponent title={'Histórico de vendas'}/>
                         <SpacerComponent height={135}/>
