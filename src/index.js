@@ -10,29 +10,12 @@ import {
 import SaleScreen from "./Screens/Sale/SaleScreen";
 import SaleHistoryScreen from "./Screens/SaleHistory/SaleHistoryScreen";
 import "moment/locale/pt-br";
+import Start from "./Start";
 
 require('dotenv').config();
 
-function start() {
-    return (
-        <ThemeProvider theme={ThemeCustomized.system()}>
-            <CssBaseline/>
-            <Router>
-                <Switch>
-                    <Route exact={true}
-                           path={SaleScreen.ROUTE}
-                           component={SaleScreen}/>
-                    <Route exact={true}
-                           path={SaleHistoryScreen.ROUTE}
-                           component={SaleHistoryScreen}/>
-                </Switch>
-            </Router>
-        </ThemeProvider>
-    );
-}
-
 ReactDOM.render(
-    start(),
+    <Start/>,
     document.getElementById('root')
 );
 

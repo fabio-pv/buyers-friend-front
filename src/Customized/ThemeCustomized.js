@@ -1,14 +1,13 @@
 import {createMuiTheme} from '@material-ui/core/styles';
 
 
-
 class ThemeCustomized {
 
-    static system() {
+    static system(theme) {
 
         return createMuiTheme({
             palette: {
-                type: 'light',
+                type: theme,
                 primary: {
                     main: '#' + process.env.REACT_APP_PRIMARY_COLOR
                 },

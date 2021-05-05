@@ -17,6 +17,8 @@ import DrawerComponent from "../../Components/DrawerComponent/DrawerComponent";
 import SubHeaderComponent from "../../Components/SubHeaderComponent/SubHeaderComponent";
 import {ContentMainResponsiveStyled, SpaceResponsiveStyled} from "./styled";
 import DBLocalUtil from "../../Utils/DBLocalUtil";
+import {SuperContext} from "../../Contexts/SuperContext";
+import Test1 from "../../Test1";
 
 const objectModel = {
     id: undefined,
@@ -38,6 +40,7 @@ const objectModel = {
 };
 
 class SaleScreen extends Component {
+    static contextType = SuperContext;
     static ROUTE = '/';
     dataFromPayment;
     dataFromClient;
@@ -212,6 +215,7 @@ class SaleScreen extends Component {
                         </Grid>
                     </Box>
                 </ContentMainResponsiveStyled>
+                <Test1/>
             </SaleContext.Provider>
         );
     }
