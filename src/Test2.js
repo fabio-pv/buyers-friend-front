@@ -26,7 +26,7 @@ class Test2 extends Component {
                         body: 'Teste de context api > Redux',
                     }),
                 })}>
-                    Theme Light
+                    Messagens
                 </button>
             </div>
         );

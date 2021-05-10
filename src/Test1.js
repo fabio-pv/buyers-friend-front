@@ -11,8 +11,14 @@ class Test1 extends Component {
                 {superContext => (
                     <SaleContext.Consumer>
                         {saleContext => (
-                            <Test2 superContext={superContext}
-                                   saleContext={saleContext}/>
+                            <>
+                                <Test2 superContext={superContext}
+                                       saleContext={saleContext}/>
+                                <button onClick={() => superContext.superState.setState({
+                                    inLoad: true,
+                                })}> outro teste
+                                </button>
+                            </>
                         )}
                     </SaleContext.Consumer>
                 )}
